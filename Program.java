@@ -8,7 +8,7 @@ public class Program {
     public static void main(String[] args) {
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(isr);
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<Fruit> list = new ArrayList<Fruit>();
         while (true) {
             String line;
             try {
@@ -18,7 +18,10 @@ public class Program {
             }
             if (line.equals(""))
                 break;
-            list.add(line);
+            Fruit fruit = Fruit.getFruit(line);
+            if (fruit == null)
+                continue;
+            list.add(fruit);
         }
         int count = list.size();
         System.out.println(count);
