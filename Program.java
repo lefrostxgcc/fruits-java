@@ -5,7 +5,8 @@ public class Program {
     
     public static void main(String[] args) throws IOException {
         FruitReader fr = new FruitReader();
-        ArrayList<Fruit> list = fr.read("fruits.txt");
+        String s = "LEMON\nORANGE\nMANDARIN\n\n";
+        ArrayList<Fruit> list = fr.readFromString(s);
         int count = list.size();
         System.out.println(count);
     }
