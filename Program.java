@@ -14,9 +14,31 @@ public class Program {
      * переданы параметрами командной строки.
      */
     public static void main(String[] args) {
-        FruitReader fr = new FruitReaderFile("fruits.txt");
+        if (args.length == 0) {
+            ShowManual();
+            return;
+        }
+        FruitReader fr = null;
+        if (args[0].equals("-file"))
+            fr = new FruitReaderFile(args[1]);
+        else if (args[0].equals("-scan"))
+            fr = new FruitReaderScan();
+        else if (args[0].equals("-data"))
+            fr = new FruitReaderString(args[1] + "\n\n");
+        if (fr == null) {
+            ShowManual();
+            return;
+        }
         Program program = new Program();
         program.Start(fr);
+    }
+
+    public static void ShowManual() {
+        System.out.println("Program: error, no options specified.");
+        System.out.println("Usage: java Program, [options] [data]");
+        System.out.println(" -file filename\tLoad Fruits from text file");
+        System.out.println(" -scan \t\t\tLoad Fruits from Standard input");
+        System.out.println(" -data FRUIT1\tLoad one fruit");
     }
 
     /**
