@@ -7,7 +7,12 @@
 public enum Fruit {
     LEMON,
     ORANGE,
-    MANDARIN;
+    MANDARIN,
+    FERRARI,
+    TESLA,
+    RENAULT,
+    MERCEDES,
+    BMW;
 
     /**
      * Получить экземпляр фрукта по заданной строке
