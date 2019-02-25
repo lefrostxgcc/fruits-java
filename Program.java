@@ -14,23 +14,28 @@ public class Program {
      * переданы параметрами командной строки.
      */
     public static void main(String[] args) {
-        if (args.length == 0) {
-            ShowManual();
+        FruitReader fr = parseArgs(args);
+        if (fr == null)
             return;
-        }
-        FruitReader fr = null;
-        if (args[0].equals("-file"))
-            fr = new FruitReaderFile(args[1]);
-        else if (args[0].equals("-scan"))
-            fr = new FruitReaderScan();
-        else if (args[0].equals("-data"))
-            fr = new FruitReaderString(args[1] + "\n\n");
-        if (fr == null) {
-            ShowManual();
-            return;
-        }
         Program program = new Program();
         program.Start(fr);
+    }
+
+    public static FruitReader parseArgs(String[] args) {
+        FruitReader fr = null;
+        if (args.length == 2 && args[0].equals("-file"))
+            fr = new FruitReaderFile(args[1]);
+        else if (args.length == 1 && args[0].equals("-scan"))
+            fr = new FruitReaderScan();
+        else if (args.length >= 2 && args[0].equals("-data")) {
+            String items = "";
+            for (int i = 1; i < args.length; i++)
+                items += args[i] + "\n";
+            items += "\n";
+            fr = new FruitReaderString(items);
+        } else
+            ShowManual();
+        return fr;
     }
 
     public static void ShowManual() {
