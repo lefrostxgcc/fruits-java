@@ -25,9 +25,9 @@ public class FruitReader {
             try {
                 line = br.readLine();
             } catch (Exception e) {
-                line = "";
+                line = null;
             }
-            if (line.equals(""))
+            if (line == null || line.equals(""))
                 break;
             Fruit fruit = Fruit.getFruit(line);
             if (fruit == null)

@@ -31,7 +31,7 @@ public class Program {
             String items = "";
             for (int i = 1; i < args.length; i++)
                 items += args[i] + "\n";
-            items += "\n";
+            // items += "\n";
             fr = new FruitReaderString(items);
         } else
             ShowManual();
