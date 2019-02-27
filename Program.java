@@ -50,8 +50,9 @@ public class Program {
      */
     public void Start(FruitReader fr) {
         ArrayList<Fruit> list = fr.read();
-        int count = list.size();
-        System.out.println(count);
+        Logic logic = new Logic(list);
+        System.out.println(logic.getCount());
+        System.out.println(logic.getFruitMax());
     }
     
 }
