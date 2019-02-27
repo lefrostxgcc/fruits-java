@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Проект - Дед Мороз.
@@ -28,11 +29,8 @@ public class Program {
         else if (args.length == 1 && args[0].equals("-scan"))
             fr = new FruitReaderScan();
         else if (args.length >= 2 && args[0].equals("-data")) {
-            String items = "";
-            for (int i = 1; i < args.length; i++)
-                items += args[i] + "\n";
-            // items += "\n";
-            fr = new FruitReaderString(items);
+            String[] arr = Arrays.copyOfRange(args, 1, args.length);
+            fr = new FruitReaderStringArray(arr);
         } else
             ShowManual();
         return fr;
