@@ -51,10 +51,7 @@ public class Program {
     public void Start(FruitReader fr) {
         ArrayList<Fruit> list = fr.read();
         Logic logic = new Logic(list);
-        System.out.println(logic.getCount());
-        System.out.println(logic.getFruitMax());
-        System.out.println(logic.getDiffCount());
-        System.out.println(logic.getSetCount());
+        System.out.println(logic.getTask());
     }
     
 }

@@ -3,10 +3,36 @@ import java.util.HashSet;
 
 public class Logic {
 
+    public enum Task {
+        COUNT,
+        DIFFCOUNT,
+        SETCOUNT,
+        FRUITMAX;
+    }
+
     ArrayList<Fruit> list;
     
     public Logic(ArrayList<Fruit> list) {
         this.list = list;
+    }
+
+    public String getTask() {
+        String answer = "";
+        for (Task task : Task.values())
+            answer += getTask(task) + "\n";
+        return answer;
+    }
+
+    public String getTask(Task task) {
+        String answer = task + "=";
+        switch (task) {
+        case COUNT: answer += getCount(); break;
+        case DIFFCOUNT: answer += getDiffCount(); break;
+        case SETCOUNT: answer += getSetCount(); break;
+        case FRUITMAX: answer += getFruitMax(); break;
+        default: answer += "unknown"; break;
+        }
+        return answer;
     }
 
     public int getCount() {
