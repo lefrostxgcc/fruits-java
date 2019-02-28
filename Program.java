@@ -53,6 +53,8 @@ public class Program {
         Logic logic = new Logic(list);
         System.out.println(logic.getCount());
         System.out.println(logic.getFruitMax());
+        System.out.println(logic.getDiffCount());
+        System.out.println(logic.getSetCount());
     }
     
 }

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Logic {
 
@@ -11,6 +12,21 @@ public class Logic {
     public int getCount() {
         int count = list.size();
         return count;
+    }
+
+    public int getDiffCount() {
+        int count = 0;
+        for (Fruit fruit : Fruit.values())
+            if (getFruitCount(fruit) > 0)
+                count++;
+        return count;
+    }
+
+    public int getSetCount() {
+        HashSet<Fruit> set = new HashSet<Fruit>();
+        for (Fruit fruit : list)
+            set.add(fruit);
+        return set.size();
     }
 
     public Fruit getFruitMax() {
