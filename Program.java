@@ -51,7 +51,9 @@ public class Program {
     public void Start(FruitReader fr) {
         ArrayList<Fruit> list = fr.read();
         Logic logic = new Logic(list);
-        System.out.println(logic.getTask());
+        System.out.println(logic.getTaskRAW());
+        System.out.println(logic.getTaskXML());
+        System.out.println(logic.getTaskJSON());
     }
     
 }

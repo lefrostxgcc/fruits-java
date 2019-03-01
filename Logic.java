@@ -16,15 +16,32 @@ public class Logic {
         this.list = list;
     }
 
-    public String getTask() {
+    public String getTaskXML() {
+        String xml = "<?xml version=\"1.0\">\n<TASKS>\n";
+        for (Task task : Task.values())
+            xml += "    <" + task + ">" + getTask(task) + "</" + task + ">\n" ;
+        xml += "</TASKS>";
+        return xml;
+    }
+
+    public String getTaskJSON() {
+        String json = "{\n";
+        for (Task task : Task.values())
+            json += "    \"" + task + "\": \"" + getTask(task) + "\",\n";
+        json = json.substring(0, json.length() - 2);
+        json += "\n}";
+        return json;
+    }
+    
+    public String getTaskRAW() {
         String answer = "";
         for (Task task : Task.values())
-            answer += getTask(task) + "\n";
+            answer += task + "=" + getTask(task) + "\n";
         return answer;
     }
 
     public String getTask(Task task) {
-        String answer = task + "=";
+        String answer = "";
         switch (task) {
         case COUNT: answer += getCount(); break;
         case DIFFCOUNT: answer += getDiffCount(); break;
