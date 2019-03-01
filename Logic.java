@@ -1,12 +1,17 @@
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.HashMap;
 
-public class Logic {
+public class Logic implements Convertable {
 
+    public String Convert(HashMap<String, String> map) {
+        return "";
+    }
+    
     public enum Task {
         COUNT,
         DIFFCOUNT,
-        SETCOUNT,
+        HASHCOUNT,
         FRUITMAX;
     }
 
@@ -45,7 +50,7 @@ public class Logic {
         switch (task) {
         case COUNT: answer += getCount(); break;
         case DIFFCOUNT: answer += getDiffCount(); break;
-        case SETCOUNT: answer += getSetCount(); break;
+        case HASHCOUNT: answer += getHashCount(); break;
         case FRUITMAX: answer += getFruitMax(); break;
         default: answer += "unknown"; break;
         }
@@ -65,7 +70,7 @@ public class Logic {
         return count;
     }
 
-    public int getSetCount() {
+    public int getHashCount() {
         HashSet<Fruit> set = new HashSet<Fruit>();
         for (Fruit fruit : list)
             set.add(fruit);
