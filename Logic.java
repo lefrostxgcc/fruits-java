@@ -1,13 +1,10 @@
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Logic implements Convertable {
-
-    public String Convert(HashMap<String, String> map) {
-        return "";
-    }
-    
+ 
     public enum Task {
         COUNT,
         DIFFCOUNT,
@@ -19,6 +16,20 @@ public class Logic implements Convertable {
     
     public Logic(ArrayList<Fruit> list) {
         this.list = list;
+    }
+
+    public String Convert(HashMap<String, String> map) {
+        String text = "";
+        for (Map.Entry<String, String> pair : map.entrySet())
+            text += pair.getKey() + "=" + pair.getValue() + "\n";
+        return text;
+    }
+
+    public HashMap<String, String> getTask() {
+        HashMap<String, String> map = new HashMap<String, String>();
+        for (Task task : Task.values())
+            map.put("" + task, getTask(task));
+        return map;
     }
 
     public String getTaskXML() {
