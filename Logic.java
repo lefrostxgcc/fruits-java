@@ -1,9 +1,8 @@
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.HashMap;
-import java.util.Map;
 
-public class Logic implements Convertable {
+public class Logic {
  
     public enum Task {
         COUNT,
@@ -18,42 +17,11 @@ public class Logic implements Convertable {
         this.list = list;
     }
 
-    public String Convert(HashMap<String, String> map) {
-        String text = "";
-        for (Map.Entry<String, String> pair : map.entrySet())
-            text += pair.getKey() + "=" + pair.getValue() + "\n";
-        return text;
-    }
-
     public HashMap<String, String> getTask() {
         HashMap<String, String> map = new HashMap<String, String>();
         for (Task task : Task.values())
             map.put("" + task, getTask(task));
         return map;
-    }
-
-    public String getTaskXML() {
-        String xml = "<?xml version=\"1.0\">\n<TASKS>\n";
-        for (Task task : Task.values())
-            xml += "    <" + task + ">" + getTask(task) + "</" + task + ">\n" ;
-        xml += "</TASKS>";
-        return xml;
-    }
-
-    public String getTaskJSON() {
-        String json = "{\n";
-        for (Task task : Task.values())
-            json += "    \"" + task + "\": \"" + getTask(task) + "\",\n";
-        json = json.substring(0, json.length() - 2);
-        json += "\n}";
-        return json;
-    }
-    
-    public String getTaskRAW() {
-        String answer = "";
-        for (Task task : Task.values())
-            answer += task + "=" + getTask(task) + "\n";
-        return answer;
     }
 
     public String getTask(Task task) {

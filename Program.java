@@ -51,8 +51,12 @@ public class Program {
     public void Start(FruitReader fr) {
         ArrayList<Fruit> list = fr.read();
         Logic logic = new Logic(list);
-        String answer = logic.Convert(logic.getTask());
-        System.out.println(answer);
+        Convertable convertRAW = new ConvertRAW();
+        Convertable convertXML = new ConvertXML();
+        Convertable convertJSON = new ConvertJSON();
+        System.out.println(convertRAW.Convert(logic.getTask()));
+        System.out.println(convertXML.Convert(logic.getTask()));
+        System.out.println(convertJSON.Convert(logic.getTask()));
     }
     
 }
