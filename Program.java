@@ -23,6 +23,20 @@ public class Program {
         program.Start(fr, co);
     }
 
+    public static void parseArgs(String[] args) {
+        ArrayList<String> params = new ArrayList<String>();
+        for (String arg : args) {
+            if (arg.startsWith("-")) {
+                create(params);
+                params = new ArrayList<String>();
+            }
+            params.add(arg);
+        }
+    }
+
+    public static void create(ArrayList<String> params) {
+    }
+
     public static Convertable parseArgsConvert(String[] args) {
         return new ConvertRAW();
     }
