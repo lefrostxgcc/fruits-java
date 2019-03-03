@@ -15,14 +15,30 @@ public class Program {
      * переданы параметрами командной строки.
      */
     public static void main(String[] args) {
-        FruitReader fr = parseArgs(args);
+        Convertable co = parseArgsConvert(args);
+        FruitReader fr = parseArgsFReader(args);
         if (fr == null)
             return;
         Program program = new Program();
-        program.Start(fr);
+        program.Start(fr, co);
     }
 
-    public static FruitReader parseArgs(String[] args) {
+    public static Convertable parseArgsConvert(String[] args) {
+        return new ConvertRAW();
+    }
+
+    /**
+     * Решение основной задачи
+     * @param fr - Выбранный класс для считывания начальных данных
+     */
+    public void Start(FruitReader fr, Convertable co) {
+        ArrayList<Fruit> list = fr.read();
+        Logic logic = new Logic(list);
+        String answer = co.Convert(logic.getTask());
+        System.out.println(answer);
+    }
+
+    public static FruitReader parseArgsFReader(String[] args) {
         FruitReader fr = null;
         if (args.length == 2 && args[0].equals("-file"))
             fr = new FruitReaderFile(args[1]);
@@ -38,25 +54,11 @@ public class Program {
 
     public static void ShowManual() {
         System.out.println("Program: error, no options specified.");
-        System.out.println("Usage: java Program, [options] [data]");
+        System.out.println("Usage: java Program [-format json|xml|raw] "
+                           + "[-file filename]|[-scan]|[-data data]");
+        System.out.println(" -format\t\tUse specified format, default raw");
         System.out.println(" -file filename\tLoad Fruits from text file");
         System.out.println(" -scan \t\t\tLoad Fruits from Standard input");
-        System.out.println(" -data FRUIT1\tLoad one fruit");
+        System.out.println(" -data FRUIT1..\tLoad list of fruits");
     }
-
-    /**
-     * Решение основной задачи
-     * @param fr - Выбранный класс для считывания начальных данных
-     */
-    public void Start(FruitReader fr) {
-        ArrayList<Fruit> list = fr.read();
-        Logic logic = new Logic(list);
-        Convertable convertRAW = new ConvertRAW();
-        Convertable convertXML = new ConvertXML();
-        Convertable convertJSON = new ConvertJSON();
-        System.out.println(convertRAW.Convert(logic.getTask()));
-        System.out.println(convertXML.Convert(logic.getTask()));
-        System.out.println(convertJSON.Convert(logic.getTask()));
-    }
-    
 }
