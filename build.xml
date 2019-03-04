@@ -5,7 +5,7 @@
   
   <target name = "build" description = "Compile java source files">
     <javac srcdir = "${src.dir}" destdir = "${build.dir}"
-           includeantruntime = "false">
+           includeantruntime = "false" debug="true">
     </javac>
   </target>
 

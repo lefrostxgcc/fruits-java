@@ -38,7 +38,7 @@ public class Program {
     public static void create(ArrayList<String> params) {
         if (params.size() == 0)
             return;
-        if (params.size() == 2 && params.get(0) == equals("-file")) {
+        if (params.size() == 2 && params.get(0).equals("-file")) {
             fr = new FruitReaderFile(params.get(1));
             return;
         }
