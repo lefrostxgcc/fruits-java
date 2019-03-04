@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * Создание начальных данных из массива строк
  * @author Chip
@@ -10,6 +12,10 @@ public class FruitReaderStringArray extends FruitReaderString {
      */
     public FruitReaderStringArray(String [] array) {
         super(ArrayToString(array));
+    }
+
+    public FruitReaderStringArray(List<String> list) {
+        super(ArrayToString(list.toArray(new String[list.size()])));
     }
 
     /**

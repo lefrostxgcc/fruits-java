@@ -15,13 +15,13 @@ public class Program {
      * переданы параметрами командной строки.
      */
     public static void main(String[] args) {
-        Convertable co = parseArgsConvert(args);
-        FruitReader fr = parseArgsFReader(args);
-        if (fr == null)
-            return;
+        parseArgs(args);
         Program program = new Program();
         program.Start(fr, co);
     }
+
+    static FruitReader fr = new FruitReaderScan();
+    static Convertable co = new ConvertRAW();
 
     public static void parseArgs(String[] args) {
         ArrayList<String> params = new ArrayList<String>();
@@ -32,9 +32,28 @@ public class Program {
             }
             params.add(arg);
         }
+        create(params);
     }
 
     public static void create(ArrayList<String> params) {
+        if (params.size() == 0)
+            return;
+        if (params.size() == 2 && params.get(0) == equals("-file")) {
+            fr = new FruitReaderFile(params.get(1));
+            return;
+        }
+        if (params.size() == 1 && params.get(0).equals("-scan")) {
+            fr = new FruitReaderScan();
+            return;
+        }
+        if (params.size() >= 1 && params.get(0).equals("-data")) {
+            fr = new FruitReaderStringArray(params.subList(1, params.size()));
+            return;
+        }
+        if (params.size() == 1 && params.get(0).equals("-help")) {
+            ShowManual();
+            return;
+        }
     }
 
     public static Convertable parseArgsConvert(String[] args) {
