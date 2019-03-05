@@ -16,14 +16,20 @@ public class Program {
      */
     public static void main(String[] args) {
         parseArgs(args);
+        if (fr == null)
+            return;
         Program program = new Program();
         program.Start(fr, co);
     }
 
-    static FruitReader fr = new FruitReaderScan();
+    static FruitReader fr = null;
     static Convertable co = new ConvertRAW();
 
     public static void parseArgs(String[] args) {
+        if (args.length == 0) {
+            ShowManual();
+            return;
+        }
         ArrayList<String> params = new ArrayList<String>();
         for (String arg : args) {
             if (arg.startsWith("-")) {
@@ -54,10 +60,15 @@ public class Program {
             ShowManual();
             return;
         }
-    }
-
-    public static Convertable parseArgsConvert(String[] args) {
-        return new ConvertRAW();
+        if (params.size() == 2 && params.get(0).equals("-format")) {
+            if (params.get(1).equals("raw"))
+                co = new ConvertRAW();
+            else if (params.get(1).equals("xml"))
+                co = new ConvertXML();
+            else if (params.get(1).equals("json"))
+                co = new ConvertJSON();
+            return;
+        }
     }
 
     /**
@@ -69,20 +80,6 @@ public class Program {
         Logic logic = new Logic(list);
         String answer = co.Convert(logic.getTask());
         System.out.println(answer);
-    }
-
-    public static FruitReader parseArgsFReader(String[] args) {
-        FruitReader fr = null;
-        if (args.length == 2 && args[0].equals("-file"))
-            fr = new FruitReaderFile(args[1]);
-        else if (args.length == 1 && args[0].equals("-scan"))
-            fr = new FruitReaderScan();
-        else if (args.length >= 2 && args[0].equals("-data")) {
-            String[] arr = Arrays.copyOfRange(args, 1, args.length);
-            fr = new FruitReaderStringArray(arr);
-        } else
-            ShowManual();
-        return fr;
     }
 
     public static void ShowManual() {
