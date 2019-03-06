@@ -2,6 +2,7 @@
 <project name = "program" default = "build">
   <property name = "src.dir" value = "."/>
   <property name = "build.dir" value = "."/>
+  <property name = "jar.name" value = "DedMoroz.jar"/>
   
   <target name = "build" description = "Compile java source files">
     <javac srcdir = "${src.dir}" destdir = "${build.dir}"
@@ -9,7 +10,18 @@
     </javac>
   </target>
 
-  <target name = "clean" description = "Clean *.class files">
+  <target name = "jar" depends="build" description = "Make jar-archive">
+    <delete file="${build.dir}/${jar.name}"/>
+    <jar destfile = "${build.dir}/${jar.name}">
+      <fileset dir = "${build.dir}"/>
+      <manifest>
+        <attribute name = "Main-Class" value = "Program" />
+      </manifest>
+    </jar>
+  </target>
+
+  <target name = "clean" description = "Clean ${jar.name} *.class files">
+    <delete file="${build.dir}/${jar.name}"/>
     <delete>
       <fileset dir = "${build.dir}">
         <include name = "**/*.class"/>

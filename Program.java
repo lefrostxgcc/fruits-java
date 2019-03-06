@@ -38,13 +38,12 @@ public class Program {
      * Вывести на экран встроенную инструкцию пользователя
      */
     public static void showManual() {
-        System.out.println("Program: error, no options specified.");
         System.out.println("Usage: java Program [options]");
-        System.out.println(" -help \tShow this help");
+        System.out.println(" -help \t\t\tShow this help");
         System.out.println(" -scan \t\t\tLoad Fruits from Standard input");
         System.out.println(" -file filename\tLoad Fruits from text file");
         System.out.println(" -data [list]\tLoad inline list of fruits");
-        System.out.println(" -format\t\tUse specified output format: XML, JSON, RAW."
-                           + " Default RAW");
+        System.out.println(" -format\t\tUse specified output format: raw, xml, json."
+                           + " Default raw");
     }
 }
