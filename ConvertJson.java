@@ -1,6 +1,10 @@
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Оформление результата в JSON-стандарте
+ * @author Chip
+ */
 public class ConvertJson implements Convertable
 {
     public String Convert(HashMap<String, String> map) {

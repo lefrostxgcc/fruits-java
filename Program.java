@@ -21,7 +21,7 @@ public class Program {
 
     /**
      * Решение основной задачи
-     * @param fr - Выбранный класс для считывания начальных данных
+     * @param pf - Выбранный класс для считывания начальных данных
      */
     public void Start(ParamFactory pf) {
         if (pf.isHelp() || pf.fruitReader() == null || pf.convertable() == null) {
@@ -34,13 +34,17 @@ public class Program {
         System.out.println(answer);
     }
 
+    /**
+     * Вывести на экран встроенную инструкцию пользователя
+     */
     public static void showManual() {
         System.out.println("Program: error, no options specified.");
-        System.out.println("Usage: java Program [-format json|xml|raw] "
-                           + "[-file filename]|[-scan]|[-data data]");
-        System.out.println(" -format\t\tUse specified format, default raw");
-        System.out.println(" -file filename\tLoad Fruits from text file");
+        System.out.println("Usage: java Program [options]");
+        System.out.println(" -help \tShow this help");
         System.out.println(" -scan \t\t\tLoad Fruits from Standard input");
-        System.out.println(" -data FRUIT1..\tLoad list of fruits");
+        System.out.println(" -file filename\tLoad Fruits from text file");
+        System.out.println(" -data [list]\tLoad inline list of fruits");
+        System.out.println(" -format\t\tUse specified output format: XML, JSON, RAW."
+                           + " Default RAW");
     }
 }

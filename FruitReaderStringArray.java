@@ -7,13 +7,17 @@ import java.util.List;
 public class FruitReaderStringArray extends FruitReaderString {
 
     /**
-     * Конструктор
-     * @param array массив из строк
+     * Инициализация по массиву
+     * @param array Массив из строк
      */
     public FruitReaderStringArray(String [] array) {
         super(ArrayToString(array));
     }
 
+    /**
+     * Инициализация по списку
+     * @param list Список строк
+     */
     public FruitReaderStringArray(List<String> list) {
         super(ArrayToString(list.toArray(new String[list.size()])));
     }

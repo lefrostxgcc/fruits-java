@@ -1,6 +1,10 @@
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Вывод результата в XML-формате виде
+ * @author Chip
+ */
 public class ConvertXml implements Convertable
 {
     public String Convert(HashMap<String, String> map) {

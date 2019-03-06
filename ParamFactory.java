@@ -1,5 +1,11 @@
 import java.util.ArrayList;
 
+/**
+ * Фабрика парсинга параметров командной строки.
+ * Цель фабрики - создание объектов
+ * FruitReader и Convertable.
+ * @author Chip
+ */
 public class ParamFactory {
     
     private FruitReader fruitReader = null;
@@ -10,6 +16,10 @@ public class ParamFactory {
     public Convertable convertable() { return convertable; }
     public boolean isHelp() {return isHelp; }
 
+    /**
+     * Инициализация и запуск фабрики.
+     * @param args аргументы командной строки.
+     */
     public ParamFactory(String[] args) {
         if (args.length == 0) {
             isHelp = true;
@@ -26,6 +36,11 @@ public class ParamFactory {
         create(params);
     }
 
+    /**
+     * Создание объектов по подсписку аргументов.
+     * @param params нулевой параметр с дефисом - определяет опцию
+     *  последующие параметры - настрока выбранной опции
+     */
     public void create(ArrayList<String> params) {
         if (params.size() == 0)
             return;
@@ -51,6 +66,11 @@ public class ParamFactory {
         }
     }
 
+    /**
+     * Минифабрика для объекта Convertable.
+     * @param format название формата вывода данных
+     * @return созданный объект
+     */
     public Convertable createConvertable(String format) {
         if (format.equals("raw"))
             return new ConvertRaw();
