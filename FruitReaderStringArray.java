@@ -24,11 +24,13 @@ public class FruitReaderStringArray extends FruitReaderString {
      * @return Строка из элементов массива, разделённых \n
      */
     protected static String ArrayToString(String [] array) {
-        String items = "";
-        for (String item : array)
-            items += item + "\n";
-        items += "\n";
-        return items;
+        StringBuilder items = new StringBuilder();
+        for (String item : array) {
+            items.append(item);
+            items.append("\n");
+        }
+        items.append("\n");
+        return items.toString();
     }
     
 }

@@ -14,7 +14,7 @@ public class Program {
      * переданы параметрами командной строки.
      */
     public static void main(String[] args) {
-        ParamFabric pf = new ParamFabric(args);
+        ParamFactory pf = new ParamFactory(args);
         Program program = new Program();
         program.Start(pf);
     }
@@ -23,14 +23,14 @@ public class Program {
      * Решение основной задачи
      * @param fr - Выбранный класс для считывания начальных данных
      */
-    public void Start(ParamFabric pf) {
-        if (pf.showHelp || pf.fruitReader == null || pf.convertable == null) {
+    public void Start(ParamFactory pf) {
+        if (pf.isHelp() || pf.fruitReader() == null || pf.convertable() == null) {
             showManual();
             return;
         }
-        ArrayList<Fruit> list = pf.fruitReader.read();
+        ArrayList<Fruit> list = pf.fruitReader().read();
         Logic logic = new Logic(list);
-        String answer = pf.convertable.Convert(logic.getTask());
+        String answer = pf.convertable().Convert(logic.getTask());
         System.out.println(answer);
     }
 

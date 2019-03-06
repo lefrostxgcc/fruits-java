@@ -25,15 +25,15 @@ public class Logic {
     }
 
     public String getTask(Task task) {
-        String answer = "";
+        StringBuilder answer = new StringBuilder();
         switch (task) {
-        case COUNT: answer += getCount(); break;
-        case DIFFCOUNT: answer += getDiffCount(); break;
-        case HASHCOUNT: answer += getHashCount(); break;
-        case FRUITMAX: answer += getFruitMax(); break;
-        default: answer += "unknown"; break;
+        case COUNT: answer.append(getCount()); break;
+        case DIFFCOUNT: answer.append(getDiffCount()); break;
+        case HASHCOUNT: answer.append(getHashCount()); break;
+        case FRUITMAX: answer.append(getFruitMax()); break;
+        default: answer.append("unknown"); break;
         }
-        return answer;
+        return answer.toString();
     }
 
     public int getCount() {

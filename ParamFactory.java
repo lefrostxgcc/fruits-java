@@ -1,15 +1,18 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class ParamFabric {
+public class ParamFactory {
     
-    public FruitReader fruitReader = null;
-    public Convertable convertable = new ConvertRAW();
-    public boolean showHelp = false;
+    private FruitReader fruitReader = null;
+    private Convertable convertable = new ConvertRaw();
+    private boolean isHelp = false;
 
-    public ParamFabric(String[] args) {
+    public FruitReader fruitReader() { return fruitReader; }
+    public Convertable convertable() { return convertable; }
+    public boolean isHelp() {return isHelp; }
+
+    public ParamFactory(String[] args) {
         if (args.length == 0) {
-            showHelp = true;
+            isHelp = true;
             return;
         }
         ArrayList<String> params = new ArrayList<String>();
@@ -39,7 +42,7 @@ public class ParamFabric {
             return;
         }
         if (params.size() == 1 && params.get(0).equals("-help")) {
-            showHelp = true;
+            isHelp = true;
             return;
         }
         if (params.size() == 2 && params.get(0).equals("-format")) {
@@ -50,11 +53,11 @@ public class ParamFabric {
 
     public Convertable createConvertable(String format) {
         if (format.equals("raw"))
-            return new ConvertRAW();
+            return new ConvertRaw();
         else if (format.equals("xml"))
-            return new ConvertXML();
+            return new ConvertXml();
         else if (format.equals("json"))
-            return new ConvertJSON();
-        return new ConvertRAW();
+            return new ConvertJson();
+        return new ConvertRaw();
     }
 }
